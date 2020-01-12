@@ -986,6 +986,22 @@ Wait for that command to report replication controller "catalog-springboot-1" su
 
 > NOTE: Even if the rollout command reports success the application may not be ready yet and the reason for that is that we currently don't have any liveness check configured, but we will add that in the next steps.
 
+add a new network policy, because the project is protected by istio network policy
+
+~~~yaml
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: web-allow-external
+spec:
+  podSelector:
+    matchLabels:
+      app: catalog-springboot 
+  ingress:
+    - {}
+~~~
+
 And now we can access using curl once again to find a certain inventory:
 
 `export URL="http://$(oc get route | grep catalog | awk '{print $2}')"`
