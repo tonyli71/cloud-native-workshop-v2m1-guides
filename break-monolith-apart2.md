@@ -962,7 +962,7 @@ end of the build output.
 
 Then deploy the project using the following command, which will use the maven plugin to deploy via CodeReady Workspaces Terminal:
 
-`oc new-build registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift:1.5 --binary --name=catalog-springboot -l app=catalog-springboot`
+`oc new-build -i redhat-openjdk18-openshift:1.5 --binary --name=catalog-springboot -l app=catalog-springboot`
 
 This build uses the new [Red Hat OpenJDK Container Image](https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html/red_hat_java_s2i_for_openshift/index){:target="_blank"}, providing foundational software needed to run Java applications, while staying at a reasonable size.
 
@@ -985,6 +985,22 @@ Finally, make sure it's actually done rolling out:
 Wait for that command to report replication controller "catalog-springboot-1" successfully rolled out before continuing.
 
 > NOTE: Even if the rollout command reports success the application may not be ready yet and the reason for that is that we currently don't have any liveness check configured, but we will add that in the next steps.
+
+add a new network policy, because the project is protected by istio network policy
+
+~~~yaml
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: web-allow-external
+spec:
+  podSelector:
+    matchLabels:
+      app: catalog-springboot 
+  ingress:
+    - {}
+~~~
 
 And now we can access using curl once again to find a certain inventory:
 
