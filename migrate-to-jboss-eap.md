@@ -35,7 +35,7 @@ Users of Eclipse, IntelliJ IDEA or Visual Studio Code will see a familiar layout
 In the project explorer pane, click on the `Import Projects...` and enter the following:
 
   * Version Control System: `GIT`
-  * URL: http://gogs.redhat.ren:10080/root/cloud-native-workshop-v2m1-labs.git
+  * URL: http://gogs.container-contest.top:10080/root/cloud-native-workshop-v2m1-labs.git
   * Check `Import recursively (for multi-module projects)`
   * Name: `cloud-native-workshop-v2m1-labs`
 
