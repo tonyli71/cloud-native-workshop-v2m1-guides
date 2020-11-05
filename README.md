@@ -1,4 +1,4 @@
-The CCN Roadshow(Dev Track) Module 1 Guide 2019
+The CCN Roadshow(Dev Track) Module 1 Guide 2020 for container-contest
 ===
 This module guides developers how to get started the cloud-native journey such as monolith application migration, deployment with Kubernetes/OpenShift cluster, 
 and modernizing applications using Red Hat Application Rumties(i.e. Quarkus, Spring Boot) with OpenShift and more.
